@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMRA TRAVEL | Премиальные паломнические туры</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #c5a059;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--light); line-height: 1.6; overflow-x: hidden; }
+
+        /* Helpers */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px; text-align: center; }
+
+        /* Hero */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1591604466107-ec97de573aff?q=80&w=2071') center/cover; }
+        .hero h1 { font-size: 5rem; margin-bottom: 20px; }
+        .btn { padding: 15px 40px; background: var(--primary); color: white; border: none; cursor: pointer; text-transform: uppercase; font-weight: 600; transition: var(--transition); border-radius: 50px; }
+        .btn:hover { background: #ad8b4a; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3); }
+
+        /* Grid sections */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { padding: 40px; background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; transition: var(--transition); }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+        /* Form */
+        form { display: flex; flex-direction: column; max-width: 500px; margin: 0 auto; gap: 20px; }
+        input, textarea { padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; color: white; border-radius: 10px; }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .fade-in.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 3rem; } }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container fade-in">
+            <h1>UMRA TRAVEL</h1>
+            <p>Ваше духовное путешествие в святые земли с комфортом и заботой</p>
+            <br>
+            <button class="btn">Забронировать тур</button>
+        </div>
+    </header>
+
+    <section id="features">
+        <div class="container">
+            <h2>Почему выбирают нас</h2>
+            <div class="grid">
+                <div class="card fade-in"><i class="fa-solid fa-kaaba"></i><h3>Полная организация</h3></div>
+                <div class="card fade-in"><i class="fa-solid fa-hotel"></i><h3>Отели 5* у мечети</h3></div>
+                <div class="card fade-in"><i class="fa-solid fa-user-tie"></i><h3>Русскоговорящие гиды</h3></div>
+                <div class="card fade-in"><i class="fa-solid fa-plane"></i><h3>Прямые перелеты</h3></div>
+                <div class="card fade-in"><i class="fa-solid fa-shield"></i><h3>Визовая поддержка</h3></div>
+                <div class="card fade-in"><i class="fa-solid fa-hands-praying"></i><h3>Обучение обрядам</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="background: #0f0f0f;">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <form id="leadForm">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <textarea rows="5" placeholder="Ваши вопросы"></textarea>
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer для анимаций
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Обработка формы
+        document.getElementById('leadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+        });
+    </script>
+</body>
+</html>
